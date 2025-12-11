@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="Puzzle.Tests.Unit/Puzzle.Tests.Unit.csproj" />
   <Project Path="Puzzle/Puzzle.csproj" />
 </Solution>
