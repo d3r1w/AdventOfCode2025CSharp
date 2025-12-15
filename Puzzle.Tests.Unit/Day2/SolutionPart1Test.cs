@@ -1,5 +1,5 @@
 using Moq;
-using Puzzle.Day1;
+using Puzzle.Day2;
 
 namespace Puzzle.Tests.Unit.Day2;
 

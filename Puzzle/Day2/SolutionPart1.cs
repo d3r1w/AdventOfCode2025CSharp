@@ -6,8 +6,36 @@ public sealed class SolutionPart1(IPuzzleInputReader inputReader) : IAbstractPuz
 
     public async ValueTask<string> Solve()
     {
+        //TODO: Fix int overflow and write test for it
         var input = await inputReader.ReadInputAsync(PuzzleDay);
+        var rangeList = input
+            .Single()
+            .Split(",")
+            .Select(x => x.Split("-"))
+            .Select(x => (int.Parse(x[0]), int.Parse(x[1])))
+            .Select(x => Enumerable.Range(x.Item1, x.Item2 - x.Item1 + 1))
+            .ToList();
 
-        return "";
+        var invalidIdSum = 0L;
+        foreach (var range in rangeList)
+        {
+            foreach (var number in range)
+            {
+                if (IsNumberIncludedTwice(number.ToString()))
+                {
+                    invalidIdSum += number;
+                }
+            }
+        }
+
+        return invalidIdSum.ToString();
+    }
+    
+    private static bool IsNumberIncludedTwice(string number)
+    {
+        if (number.Length % 2 != 0) return false;
+        var part1 = number.AsSpan(0, number.Length / 2);
+        var part2 = number.AsSpan(number.Length / 2, number.Length / 2);
+        return part1.SequenceEqual(part2);
     }
 }
