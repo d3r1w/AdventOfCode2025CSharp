@@ -35,6 +35,7 @@ public class SolutionPart2Test
     
     [Theory]
     [InlineData(new[] {"L68", "L30", "R48" }, 2)]
+    [InlineData(new[] {"L68", "L30", "R48", "L5" }, 2)]
     [InlineData(new[] {"L68", "L30", "R48", "L5", "R60", "L55" }, 4)]
     [InlineData(new[] {"L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99" }, 5)]
     [InlineData(new[] {"L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82" }, 6)]
