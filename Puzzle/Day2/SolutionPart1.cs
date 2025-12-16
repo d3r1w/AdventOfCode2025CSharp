@@ -6,7 +6,6 @@ public sealed class SolutionPart1(IPuzzleInputReader inputReader) : IAbstractPuz
 
     public async ValueTask<string> Solve()
     {
-        //TODO: Fix int overflow and write test for it
         var input = await inputReader.ReadInputAsync(PuzzleDay);
         var rangeList = input
             .Single()
