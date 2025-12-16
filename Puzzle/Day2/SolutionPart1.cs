@@ -12,8 +12,8 @@ public sealed class SolutionPart1(IPuzzleInputReader inputReader) : IAbstractPuz
             .Single()
             .Split(",")
             .Select(x => x.Split("-"))
-            .Select(x => (int.Parse(x[0]), int.Parse(x[1])))
-            .Select(x => Enumerable.Range(x.Item1, x.Item2 - x.Item1 + 1))
+            .Select(x => (long.Parse(x[0]), long.Parse(x[1])))
+            .Select(x => CreateRange(x.Item1, x.Item2 - x.Item1 + 1))
             .ToList();
 
         var invalidIdSum = 0L;
@@ -37,5 +37,13 @@ public sealed class SolutionPart1(IPuzzleInputReader inputReader) : IAbstractPuz
         var part1 = number.AsSpan(0, number.Length / 2);
         var part2 = number.AsSpan(number.Length / 2, number.Length / 2);
         return part1.SequenceEqual(part2);
+    }
+    
+    private static IEnumerable<long> CreateRange(long start, long count)
+    {
+        for (var i = 0; i < count; i++)
+        {
+            yield return start + i;
+        }
     }
 }

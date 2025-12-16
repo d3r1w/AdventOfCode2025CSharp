@@ -7,6 +7,7 @@ public class SolutionPart1Test
 {
 
     [Theory]
+    [InlineData("2147483847-2147483849", 0)]
     [InlineData("11-22", 33)]
     [InlineData("95-115", 99)]
     [InlineData("998-1012", 1010)]
