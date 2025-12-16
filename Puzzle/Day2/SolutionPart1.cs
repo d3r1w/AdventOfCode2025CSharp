@@ -12,20 +12,12 @@ public sealed class SolutionPart1(IPuzzleInputReader inputReader) : IAbstractPuz
             .Split(",")
             .Select(x => x.Split("-"))
             .Select(x => (long.Parse(x[0]), long.Parse(x[1])))
-            .Select(x => CreateRange(x.Item1, x.Item2 - x.Item1 + 1))
-            .ToList();
+            .Select(x => CreateRange(x.Item1, x.Item2 - x.Item1 + 1));
 
-        var invalidIdSum = 0L;
-        foreach (var range in rangeList)
-        {
-            foreach (var number in range)
-            {
-                if (IsNumberIncludedTwice(number.ToString()))
-                {
-                    invalidIdSum += number;
-                }
-            }
-        }
+        var invalidIdSum = rangeList
+            .SelectMany(x => x)
+            .Where(x => IsNumberIncludedTwice(x.ToString()))
+            .Sum();
 
         return invalidIdSum.ToString();
     }
