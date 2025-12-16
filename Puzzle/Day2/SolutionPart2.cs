@@ -16,18 +16,40 @@ public sealed class SolutionPart2(IPuzzleInputReader inputReader) : IAbstractPuz
 
         var invalidIdSum = rangeList
             .SelectMany(x => x)
-            .Where(x => IsNumberIncludedTwice(x.ToString()))
+            .Where(x => IsNumberPatternRepeating(x.ToString()))
             .Sum();
 
         return invalidIdSum.ToString();
     }
     
-    private static bool IsNumberIncludedTwice(string number)
+    private static bool IsNumberPatternRepeating(string number)
     {
-        if (number.Length % 2 != 0) return false;
-        var part1 = number.AsSpan(0, number.Length / 2);
-        var part2 = number.AsSpan(number.Length / 2, number.Length / 2);
-        return part1.SequenceEqual(part2);
+        var hasRepeatingPattern = false;
+
+        for (var i = 2; i <= number.Length; i++)
+        {
+            hasRepeatingPattern |= IsNumberNthTimesIncluded(number, i);
+        }
+        
+        return hasRepeatingPattern;
+    }
+    
+    private static bool IsNumberNthTimesIncluded(string number, int n)
+    {
+        if (number.Length % n != 0) return false;
+        
+        var partLength = number.Length / n;
+        var part1 = number.AsSpan(0, partLength);
+        
+        for (var i = 1; i < n; i++)
+        {
+            var nthPart = number.AsSpan(partLength * i, partLength);
+            if (!part1.SequenceEqual(nthPart))
+            {
+                return false;
+            }
+        }
+        return true;
     }
     
     private static IEnumerable<long> CreateRange(long start, long count)

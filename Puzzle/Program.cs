@@ -13,3 +13,7 @@ Console.WriteLine($"Day{day1Part2Solution.PuzzleDay} Part 2: {day1Part2Result}")
 var day2Part1Solution = new Puzzle.Day2.SolutionPart1(inputReader);
 var day2Part1Result = await day2Part1Solution.Solve();
 Console.WriteLine($"Day{day2Part1Solution.PuzzleDay} Part 1: {day2Part1Result}");
+
+var day2Part2Solution = new Puzzle.Day2.SolutionPart2(inputReader);
+var day2Part2Result = await day2Part2Solution.Solve();
+Console.WriteLine($"Day{day2Part2Solution.PuzzleDay} Part 2: {day2Part2Result}");
